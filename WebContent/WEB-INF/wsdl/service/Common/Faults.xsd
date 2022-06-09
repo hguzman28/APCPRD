@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+			targetNamespace="http://www.jamar.com/Commons/Faults" 
+			xmlns:tns="http://www.jamar.com/Commons/Faults" elementFormDefault="qualified">
+	<xsd:annotation>
+		<xsd:documentation>
+			<Author>Jorge Enrique Garrido Vergara</Author>
+			<Since>03/10/2014</Since>
+			<Version>1.0</Version>
+			<Description>This Schema defines the common error or faults</Description>
+			<Changes>
+				<Author>Jorge Enrique Garrido Vergara</Author>
+				<Date>03/10/2014</Date>
+				<Description>Create</Description>
+				<Version>1.0</Version>
+			</Changes>
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="DataNotFoundFault" type="tns:ExceptionFaultType"/>
+	<xsd:element name="ExternalSystemNotAvailableFault" type="tns:ExceptionFaultType"/>
+	<xsd:element name="IllegalUsageFault" type="tns:ExceptionFaultType"/>
+	<xsd:element name="InternalSystemFault" type="tns:ExceptionFaultType"/>
+	<xsd:element name="MandatoryDataMissingFault" type="tns:ExceptionFaultType"/>
+	<xsd:element name="ReferenceDataMissingFault" type="tns:ExceptionFaultType"/>
+	<xsd:element name="BusinessFault" type="tns:ExceptionFaultType"/>
+	<xsd:complexType name="ExceptionFaultType">
+		<xsd:sequence>
+			<xsd:element name="faultCode" type="xsd:string"/>
+			<xsd:element name="faultString" type="xsd:string"/>
+			<xsd:element name="faultActor" type="xsd:string"/>
+			<xsd:element name="detail" type="tns:DetailType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DetailType">
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="description" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.jamar.com/Credit/Service/CreditBureau"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="CreditBureauService" 
+	xmlns:fou="http://www.jamar.com/Commons/Faults"
+	xmlns:cbu="http://www.jamar.com/Credit/Schema/CreditBureau"
+	targetNamespace="http://www.jamar.com/Credit/Service/CreditBureau">
+	<wsdl:documentation>
+		<Objective>This technical interface define the service operations to
+		 Credit Bureau Integration(APC Panama)
+		</Objective>
+		<Date>12/06/2017</Date>
+		<Author>Daniel Ocampo </Author>
+		<Version>1.0</Version>
+		<Operations>
+			1. FindCreditHistory.
+  		</Operations>
+		<Changes>
+			<Author>Jorge Enrique Garrido Vergara</Author>
+			<Date>26/09/2016</Date>
+			<Description>Create</Description>
+			<Version>1.0</Version>
+		</Changes>
+	</wsdl:documentation>
+
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import
+				namespace="http://www.jamar.com/Credit/Schema/CreditBureau"
+				schemaLocation="../Schema/CreditBureauService.xsd" />
+				
+			<xsd:import namespace="http://www.jamar.com/Commons/Faults"
+				schemaLocation="../Common/Faults.xsd" />
+		</xsd:schema>
+		 <xsd:schema targetNamespace="urn:tempuri-org">
+          <xsd:import schemaLocation="../Entity/solicitud.xsd"/>
+    	</xsd:schema>
+	</wsdl:types>
+
+
+	<wsdl:message name="FindCreditHistoryRequest">
+		<wsdl:part element="Solicitud" name="body" />
+	</wsdl:message>
+	<wsdl:message name="FindCreditHistoryResponse">
+		<wsdl:part element="cbu:FindCreditHistoryResponse" name="body" />
+	</wsdl:message>
+	
+	<wsdl:message name="MandatoryDataMissingFault">
+		<wsdl:part element="fou:MandatoryDataMissingFault" name="fault" />
+	</wsdl:message>
+	<wsdl:message name="IllegalUsageFault">
+		<wsdl:part element="fou:IllegalUsageFault" name="fault" />
+	</wsdl:message>
+	<wsdl:message name="ReferenceDataMissingFault">
+		<wsdl:part element="fou:ReferenceDataMissingFault" name="fault" />
+	</wsdl:message>
+	<wsdl:message name="InternalSystemFault">
+		<wsdl:part element="fou:InternalSystemFault" name="fault" />
+	</wsdl:message>
+	<wsdl:message name="DataNotFoundFault">
+		<wsdl:part element="fou:DataNotFoundFault" name="fault" />
+	</wsdl:message>
+	<wsdl:message name="BusinessFault">
+		<wsdl:part element="fou:BusinessFault" name="fault" />
+	</wsdl:message>
+	<wsdl:message name="ExternalSystemNotAvailableFault">
+		<wsdl:part element="fou:ExternalSystemNotAvailableFault"
+			name="fault" />
+	</wsdl:message>
+
+	<wsdl:portType name="CreditBureauInterface">
+		<wsdl:operation name="FindCreditHistory">
+			<wsdl:documentation>
+				<Name>FindCreditHistory</Name>
+				<Objective>This operation query the Credit history and Quanto products to Credit Bureau(Datacredito)
+				</Objective>
+				<Date>26/09/2014</Date>
+				<Author>Jorge Enrique Garrido Vergara</Author>
+				<Version>1.0</Version>
+				<Input>
+					<Parameter>SolicitudType</Parameter>
+					<Parameter>SolicitudType\clave</Parameter>
+					<Parameter>SolicitudType\identificacion</Parameter>
+					<Parameter>SolicitudType\primerApellido</Parameter>
+					<Parameter>SolicitudType\producto</Parameter>
+					<Parameter>SolicitudType\tipoIdentificacion</Parameter>
+					<Parameter>SolicitudType\usuario</Parameter>
+				</Input>
+				<Output>
+					<Field>answer</Field>
+					<Field>ResponseFailureType\errorCode</Field>
+					<Field>ResponseFailureType\errorDescription</Field>
+				</Output>
+				<Faults>
+					<Fault>MandatoryDataMissingFault</Fault>
+					<Fault>IllegalUsageFault</Fault>
+					<Fault>ReferenceDataMissingFault</Fault>
+					<Fault>InternalSystemFault</Fault>
+					<Fault>DataNotFoundFault</Fault>
+					<Fault>BusinessFault</Fault>
+					<Fault>ExternalSystemNotAvailableFault</Fault>
+				</Faults>
+				<Changes>
+					<Author>Jorge Enrique Garrido Vergara</Author>
+					<Date>26/09/2014</Date>
+					<Description>Create</Description>
+					<Version>1.0</Version>
+				</Changes>
+			</wsdl:documentation>
+			<wsdl:input message="tns:FindCreditHistoryRequest" />
+			<wsdl:output message="tns:FindCreditHistoryResponse" />
+			<wsdl:fault message="tns:MandatoryDataMissingFault" name="MandatoryDataMissingFault" />
+			<wsdl:fault message="tns:IllegalUsageFault" name="IllegalUsageFault" />
+			<wsdl:fault message="tns:ReferenceDataMissingFault" name="ReferenceDataMissingFault" />
+			<wsdl:fault message="tns:InternalSystemFault" name="InternalSystemFault" />
+			<wsdl:fault message="tns:DataNotFoundFault" name="DataNotFoundFault" />
+			<wsdl:fault message="tns:BusinessFault" name="BusinessFault" />
+			<wsdl:fault message="tns:ExternalSystemNotAvailableFault"
+				name="ExternalSystemNotAvailableFault" />
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<wsdl:binding name="CreditBureauSOAPBinding" type="tns:CreditBureauInterface">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="FindCreditHistory">
+			<soap:operation
+				soapAction="http://www.jamar.com/Credit/Service/CreditBureau/FindCreditHistory" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="MandatoryDataMissingFault">
+				<soap:fault name="MandatoryDataMissingFault" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="IllegalUsageFault">
+				<soap:fault name="IllegalUsageFault" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="ReferenceDataMissingFault">
+				<soap:fault name="ReferenceDataMissingFault" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="InternalSystemFault">
+				<soap:fault name="InternalSystemFault" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="DataNotFoundFault">
+				<soap:fault name="DataNotFoundFault" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="BusinessFault">
+				<soap:fault name="BusinessFault" use="literal" />
+			</wsdl:fault>
+			<wsdl:fault name="ExternalSystemNotAvailableFault">
+				<soap:fault name="ExternalSystemNotAvailableFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CreditBureauService">
+		<wsdl:port binding="tns:CreditBureauSOAPBinding" name="CreditBureauPort">
+			<soap:address location="http://www.example.org/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

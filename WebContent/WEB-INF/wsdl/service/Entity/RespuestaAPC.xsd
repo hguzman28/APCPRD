@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Resultado">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Validacion" type="ValidacionType"
+					maxOccurs="1" />
+				<xs:element name="Resumen" type="ResumenesType" maxOccurs="1" />
+				<xs:element name="Generales" type="GeneralesType" maxOccurs="1" />
+				<xs:element name="Detalle" type="DetallesType" maxOccurs="1" />
+				<xs:element name="Resumen" type="ResumenesType" maxOccurs="1" />
+				<xs:element name="ReferenciasCanceladas" type="ReferenciasCanceladasType"
+					maxOccurs="1" />
+				<xs:element name="Movimientos" type="MovimientosType"
+					maxOccurs="1" />
+				<xs:element name="Score" type="ScoresType" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="ValidacionType">
+		<xs:sequence>
+			<xs:element name="EsValido" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="GeneralesType">
+		<xs:sequence>
+			<xs:element name="Generales" type="GeneralType" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GeneralType">
+		<xs:sequence>
+			<xs:element name="Nombre" type="xs:string" />
+			<xs:element name="Apellido" type="xs:string" />
+			<xs:element name="Ident_Clie" type="xs:string" />
+			<xs:element name="FEC_CREACION" type="xs:date" />
+			<xs:element name="Nom_Asoc" type="xs:int" />
+			<xs:element name="Fec_Defuncion" type="xs:date" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResumenesType">
+		<xs:sequence>
+			<xs:element name="Resumen" type="ResumenType" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResumenType">
+		<xs:sequence>
+			<xs:element name="RELACION" type="xs:string" />
+			<xs:element name="CANTIDAD" type="xs:string" />
+			<xs:element name="MONTO" type="xs:string" />
+			<xs:element name="SALDO_ACTUAL" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DetallesType">
+		<xs:sequence>
+			<xs:element name="Detalle" type="DetalleType" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DetalleType">
+		<xs:sequence>
+			<xs:element name="NOM_ASOC" type="xs:string" />
+			<xs:element name="DESCR_CORTA_RELA" type="xs:string" />
+			<xs:element name="FEC_INICIO_REL" type="xs:date" />
+			<xs:element name="FEC_FIN_REL" type="xs:date" />
+			<xs:element name="MONTO_ORIGINAL" type="xs:string" />
+			<xs:element name="NUM_PAGOS" type="xs:int" />
+			<xs:element name="DESCR_FORMA_PAGO" type="xs:string" />
+			<xs:element name="IMPORTE_PAGO" type="xs:string" />
+			<xs:element name="FEC_ULTIMO_PAGO" type="xs:date" />
+			<xs:element name="MONTO_ULTIMO_PAGO" type="xs:string" />
+			<xs:element name="DESCR_OBS_CORTA" type="xs:string" />
+			<xs:element name="SALDO_ACTUAL" type="xs:string" />
+			<xs:element name="NUM_DIAS_ATRASO" type="xs:string" />
+			<xs:element name="HISTORIA" type="xs:string" />
+			<xs:element name="MONTO_CODIFICADO" type="xs:string" />
+			<xs:element name="FEC_ACTUALIZACION" type="xs:date" />
+			<xs:element name="COD_GRUPO_ECON" type="xs:string" />
+			<xs:element name="TIPO_ASOC" type="xs:string" />
+			<xs:element name="NUM_REFER" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReferenciasCanceladasType">
+		<xs:sequence>
+			<xs:element name="ReferenciasCanceladas" type="ReferenciaCanceladaType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReferenciaCanceladaType">
+		<xs:sequence>
+			<xs:element name="NOM_ASOC" type="xs:string" />
+			<xs:element name="DESCR_CORTA_RELA" type="xs:string" />
+			<xs:element name="FEC_INICIO_REL" type="xs:date" />
+			<xs:element name="FEC_FIN_REL" type="xs:date" />
+			<xs:element name="MONTO_ORIGINAL" type="xs:string" />
+			<xs:element name="FEC_LIQUIDACION" type="xs:date" />
+			<xs:element name="HISTORIA" type="xs:string" />
+			<xs:element name="DESCR_OBS_CORTA" type="xs:string" />
+			<xs:element name="MONTO_CODIFICADO" type="xs:string" />
+			<xs:element name="COD_GRUPO_ECON" type="xs:string" />
+			<xs:element name="TIPO_ASOC" type="xs:string" />
+			<xs:element name="NUM_REFER" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MovimientosType">
+		<xs:sequence>
+			<xs:element name="Movimientos" type="MovimientoType"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MovimientoType">
+		<xs:sequence>
+			<xs:element name="NOM_ASOC" type="xs:int" />
+			<xs:element name="FEC1" type="xs:string" />
+			<xs:element name="IDEN_CLIE" type="xs:date" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ScoresType">
+		<xs:sequence>
+			<xs:element name="Score" type="ScoreType" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ScoreType">
+		<xs:sequence>
+			<xs:element name="Score" type="xs:string" />
+			<xs:element name="Pi" type="xs:string" />
+			<xs:element name="EXCLUSION" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>

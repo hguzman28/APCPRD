@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Solicitud">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Solicitud" type="SolicitudType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="SolicitudType">
+		<xs:attribute name="usuarioConsulta" type="xs:string"/>
+		<xs:attribute name="claveConsulta" type="xs:string"/>
+		<xs:attribute name="identificacion" type="xs:string"/>
+		<xs:attribute name="tipoIdentificacion" type="xs:string"/>
+		<xs:attribute name="primerApellido" type="xs:string"/>
+		<xs:attribute name="producto" type="xs:string"/>
+	</xs:complexType>
+</xs:schema>

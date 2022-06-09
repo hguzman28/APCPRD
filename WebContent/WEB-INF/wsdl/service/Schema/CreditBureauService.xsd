@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	    targetNamespace="http://www.jamar.com/Credit/Schema/CreditBureau" 
+	    xmlns:com="http://www.jamar.com/Commons/Common"
+	    xmlns:tns="http://www.jamar.com/Credit/Schema/CreditBureau" elementFormDefault="qualified">
+	    <xsd:annotation>
+			<xsd:documentation>
+				<Author>Jorge Enrique Garrido Vergara</Author>
+				<Since>26/09/2016</Since>
+				<Version>1.0</Version>
+				<Description>Schema with the Credit Bureau Operations</Description>
+				<Keywords>HC, Quanto, DataCredito, Credit Bureau</Keywords>
+				<Changes>
+					<Author>Jorge Enrique Garrido Vergara</Author>
+					<Date>26/09/2016</Date>
+					<Description>Create</Description>
+					<Version>1.0</Version>
+				</Changes>
+			</xsd:documentation>
+		</xsd:annotation>
+	
+	   <xsd:import namespace="http://www.jamar.com/Commons/Common" schemaLocation="../Common/Common.xsd"/>
+	
+	   <xsd:element name="FindCreditHistoryResponse" type="tns:FindCreditHistoryResponseType"/>
+
+	   <xsd:complexType name="FindCreditHistoryResponseType">
+	   	<xsd:sequence>
+	   		<xsd:element name="answer" type="xsd:boolean" minOccurs="1"/>
+			<xsd:element name="ResponseFailure" type="com:ResponseFailureType" minOccurs="0"/>
+	   	</xsd:sequence>
+	   </xsd:complexType>
+</xsd:schema>

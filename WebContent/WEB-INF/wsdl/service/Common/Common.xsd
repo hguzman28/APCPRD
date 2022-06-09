@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+			targetNamespace="http://www.jamar.com/Commons/Common" 
+			xmlns:tns="http://www.jamar.com/Commons/Common" elementFormDefault="qualified">
+	<xsd:annotation>
+		<xsd:documentation>
+			<Author>Jorge Enrique Garrido Vergara</Author>
+			<Since>30/09/2014</Since>
+			<Version>1.0</Version>
+			<Description>Schema with the Commons Type</Description>
+			<Changes>
+				<Author>Jorge Enrique Garrido Vergara</Author>
+				<Date>30/09/2014</Date>
+				<Description>Create</Description>
+				<Version>1.0</Version>
+			</Changes>
+		</xsd:documentation>
+	</xsd:annotation>
+			
+	<xsd:complexType name="CatalogType">
+		<xsd:sequence>
+			<xsd:element name="id"    type="xsd:long" minOccurs="0"/>
+			<xsd:element name="code"  type="xsd:string"  minOccurs="1"/>
+			<xsd:element name="name"  type="xsd:string"  minOccurs="1"/>
+			<xsd:element name="state" type="xsd:boolean"  minOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	
+	<xsd:complexType name="ChannelType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:CatalogType">
+				<xsd:sequence>
+					<xsd:element name="MediasType" type="tns:CatalogType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>	
+
+	<xsd:complexType name="MediaType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:CatalogType">
+				<xsd:sequence>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>	
+	
+	
+	
+	<!-- Revisar si es requerido agregar el firstRecord y lastrecord -->
+	<xsd:complexType name="PaginationType">
+		<xsd:sequence>
+			<xsd:element name="pageSize" type="xsd:int"/>
+			<xsd:element name="pageNumber" type="xsd:int"/>
+			<xsd:element name="numberOfRows" type="xsd:int"/>
+			<xsd:element name="direction" type="xsd:string"/>
+			<xsd:element name="firstRecord" type="xsd:int"/>
+			<xsd:element name="lastrecord" type="xsd:int"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="SearchCriteriaType">
+		<xsd:sequence>
+			<!-- =, !=, <, <=, >=, >, LIKE -->
+			<xsd:element name="field" type="xsd:string"/>
+			<xsd:element name="operator" type="xsd:string"/>
+			<xsd:element name="value" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="DateSearchCriteriaType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:SearchCriteriaType">
+			<xsd:sequence>
+				<xsd:element name="beginDate" type="xsd:dateTime"/>
+				<xsd:element name="endDate" type="xsd:dateTime"/>
+			</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="DinamicFieldType">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string"/>
+			<xsd:element name="value" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="AffiliateInformationType">
+		<xsd:sequence>
+			<xsd:element name="affiliateId" type="xsd:string"/>
+			<xsd:element name="market" type="xsd:string"/>
+			<xsd:element name="businessDomain" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="AuditType">
+		<xsd:sequence>
+			<xsd:element name="serviceConsumerName" type="xsd:string"/>
+			<xsd:element name="ipMachine" type="xsd:string"/>
+			<xsd:element name="userName" type="xsd:string"/>
+			<xsd:element name="serviceName" type="xsd:string"/>
+			<xsd:element name="operationName" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ResponseFailureType">
+		<xsd:sequence>
+			<xsd:element name="errorCode" type="xsd:string" minOccurs="1"/>
+			<xsd:element name="errorDescription" type="xsd:string" minOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	
+	<xsd:complexType name="PartyType">
+		<xsd:sequence>
+			<xsd:element name="identifierType"   type="tns:CatalogType"  minOccurs="0"/>
+			<xsd:element name="identifierNumber" type="xsd:string"  minOccurs="0"/>
+			<xsd:element name="firstName"        type="xsd:string"  minOccurs="0"/>
+			<xsd:element name="middleName"       type="xsd:string"  minOccurs="0"/>
+			<xsd:element name="lastName"         type="xsd:string"  minOccurs="0"/>
+			<xsd:element name="secondLastName"   type="xsd:string"  minOccurs="0"/>
+			<xsd:element name="fullName"         type="xsd:string"  minOccurs="0"/>
+			<xsd:element name="genere"           type="tns:CatalogType"  minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+</xsd:schema>
